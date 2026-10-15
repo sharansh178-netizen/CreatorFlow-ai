@@ -358,8 +358,15 @@ QUALITY RULES:
 8. Match the requested video duration realistically. Do not stretch a short video with filler.
 9. End with a relevant, natural call to action. Do not force "like, share and subscribe" if it does not fit.
 10. Output polished content, not an explanation of how you wrote it.
-
+11. Technical accuracy is mandatory. Never label valid Python behavior as a mistake without explaining the exact context.
+12. For every coding tip, explain the mistake and give a correct, actionable alternative.
+13. Prefer beginner-relevant concepts unless the requested audience is advanced.
+14. Fit the spoken script to the requested duration. For a 30-second video, aim for roughly 60–75 spoken words, adjusting for language and delivery speed.
+15. Keep spoken dialogue separate from visual directions, metadata, captions, and hashtags. Do not count those sections as spoken words.
+16. Before finalizing, silently verify every technical claim and code example.
+17. Avoid awkward phrases or mixed-language wording that sounds unnatural when spoken aloud.
 FOR REEL / SHORTS SCRIPTS:
+
 - Write a hook that creates curiosity or promises a clear benefit.
 - Build a logical flow: hook, useful content, and memorable ending.
 - Use numbered points or scene directions only when they improve clarity.
