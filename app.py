@@ -365,6 +365,11 @@ QUALITY RULES:
 15. Keep spoken dialogue separate from visual directions, metadata, captions, and hashtags. Do not count those sections as spoken words.
 16. Before finalizing, silently verify every technical claim and code example.
 17. Avoid awkward phrases or mixed-language wording that sounds unnatural when spoken aloud.
+18. For every programming mistake, explain the exact error or incorrect behavior and provide a correct, beginner-friendly fix.
+
+19. Include at least one short, valid code example when it meaningfully helps explain a programming mistake. Verify that the example is technically correct.
+
+20. Do not promise fixes in the title unless the script actually explains those fixes. Prioritize teaching clearly over squeezing in too many points.
 FOR REEL / SHORTS SCRIPTS:
 
 - Write a hook that creates curiosity or promises a clear benefit.
