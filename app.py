@@ -4,10 +4,10 @@ from google import genai
 
 st.set_page_config(
     page_title="CreatorFlow AI",
-    page_icon="🎬",
+    page_icon="logo.png.png",
     layout="wide",
     initial_sidebar_state="expanded"
-)
+
 
 # ---------- FUTURISTIC DESIGN ----------
 st.markdown("""
@@ -199,7 +199,10 @@ except Exception:
 
 # ---------- SIDEBAR ----------
 with st.sidebar:
-    st.markdown("## 🎬 CreatorFlow")
+   
+    st.image("logo.png", width=150)
+    st.markdown("## CreatorFlow AI")
+
     st.markdown(
         '<p style="color:#9eabce;margin-top:-12px;">AI CONTENT STUDIO · V1.0</p>',
         unsafe_allow_html=True
@@ -300,12 +303,23 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 # ---------- INPUT WORKSPACE ----------
 with st.container(border=True):
     topic = st.text_input(
         "💡 Video topic",
-        placeholder="e.g. 5 habits that waste your time every day"
+        placeholder="e.g. 5 Python mistakes beginners make"
+    )
+
+    audience = st.selectbox(
+        "🎯 Target audience",
+        [
+            "General audience",
+            "Students",
+            "Python beginners",
+            "Content creators",
+            "Gamers",
+            "Working professionals"
+        ]
     )
 
     script = st.text_area(
@@ -320,7 +334,6 @@ with st.container(border=True):
         use_container_width=True
     )
 
-
 # ---------- GENERATION ----------
 if generate:
     if not topic.strip() and not script.strip():
@@ -333,55 +346,52 @@ if generate:
 
     else:
         prompt = f"""
-You are CreatorFlow AI, an expert short-form content strategist and scriptwriter.
+You are CreatorFlow AI, an expert content strategist for Hindi, Hinglish, and English creators.
+Create original, useful content tailored to the selected platform, language, style, duration, topic, and content type.
+Start with a compelling, truthful hook. Never use misleading clickbait or exaggerated promises.
+Write natural spoken dialogue that sounds smooth when read aloud.
+For a 30-second video, aim for about 60–75 spoken words; adjust word count for other durations.
+Keep spoken dialogue separate from visual directions, on-screen text, captions, and hashtags.
+Structure scripts with a hook, clearly explained main points, and a relevant call to action when appropriate.
+Explain each included point properly; cover fewer points rather than rushing through too many.
+For technical content, keep claims and code accurate. Never invent APIs, errors, or guarantees.
+For Python, explain mistakes clearly and provide a correct beginner-friendly fix with an example when useful.
+Explain indexing, assignment versus copying, shallow-copy limitations, and list modification accurately when relevant.
+Use realistic timestamps and pacing when timestamps are requested or useful.
+Make titles specific, descriptions relevant, and hashtags focused.
+Follow the selected content type and return only relevant sections.
+Before responding, review accuracy, completeness, natural language, and duration.
 
-Your goal is to create specific, engaging, natural-sounding content that creators can actually publish.
+FINAL QUALITY CHECK:
+- Make the spoken script fit the selected video duration.
+- For 30 seconds, target approximately 60-75 spoken words.
+- Count only spoken dialogue, not titles, metadata, visual directions, or on-screen text.
+- Ensure the title, description, examples, and spoken script discuss the same points.
+- For programming topics, verify that examples are technically correct.
+- Explain that `==` compares values, while `is` checks object identity.
+- Never claim a script fits the duration unless its spoken word count and estimated speaking pace support that.
+- If the selected content type requests captions, hashtags, or SEO, include them in separate clearly labelled sections.
+
+ALTERNATIVE HOOKS:
+- Generate 3 alternative opening hooks for the selected topic.
+- Make each hook distinct:
+  1. Curiosity-driven
+  2. Problem-focused
+  3. Relatable or surprising
+- Keep each hook short, natural, and suitable for the selected platform and language.
+- Label them Hook 1, Hook 2, and Hook 3.
+- Keep the hooks separate from the main script.
+- Ensure all hooks are accurate and do not use misleading clickbait.
 
 CONTENT SETTINGS:
+target audience: {audience}
+Content type: {mode}
 Platform: {platform}
 Language: {language}
 Style: {tone}
-Video duration: {duration}
-Requested output: {mode}
-Video topic: {topic if topic.strip() else "Infer the topic from the supplied script"}
-Existing script or extra details:
-{script if script.strip() else "None provided"}
-
-QUALITY RULES:
-1. Start with a powerful, topic-specific hook. Avoid generic openings like "Hello guys", "Welcome back", or "Today we will discuss".
-2. Deliver value immediately. Do not waste the opening with introductions or filler.
-3. Make every point concrete, useful, and relevant to the topic. Include realistic examples where helpful.
-4. Match the selected platform and requested output. A short-form video script should sound spoken, not like an essay.
-5. For Hindi / Hinglish, use natural conversational Hindi in Roman script. Avoid awkward translations and unnecessarily formal language.
-6. Use short sentences that are easy to speak aloud. Vary the rhythm so the script sounds human.
-7. Avoid repeating the same idea, making unsupported claims, or inventing statistics.
-8. Match the requested video duration realistically. Do not stretch a short video with filler.
-9. End with a relevant, natural call to action. Do not force "like, share and subscribe" if it does not fit.
-10. Output polished content, not an explanation of how you wrote it.
-11. Technical accuracy is mandatory. Never label valid Python behavior as a mistake without explaining the exact context.
-12. For every coding tip, explain the mistake and give a correct, actionable alternative.
-13. Prefer beginner-relevant concepts unless the requested audience is advanced.
-14. Fit the spoken script to the requested duration. For a 30-second video, aim for roughly 60–75 spoken words, adjusting for language and delivery speed.
-15. Keep spoken dialogue separate from visual directions, metadata, captions, and hashtags. Do not count those sections as spoken words.
-16. Before finalizing, silently verify every technical claim and code example.
-17. Avoid awkward phrases or mixed-language wording that sounds unnatural when spoken aloud.
-18. For every programming mistake, explain the exact error or incorrect behavior and provide a correct, beginner-friendly fix.
-
-19. Include at least one short, valid code example when it meaningfully helps explain a programming mistake. Verify that the example is technically correct.
-
-20. Do not promise fixes in the title unless the script actually explains those fixes. Prioritize teaching clearly over squeezing in too many points.
-FOR REEL / SHORTS SCRIPTS:
-
-- Write a hook that creates curiosity or promises a clear benefit.
-- Build a logical flow: hook, useful content, and memorable ending.
-- Use numbered points or scene directions only when they improve clarity.
-- Keep the spoken wording natural and easy to deliver.
-- Add brief on-screen text suggestions only when useful.
-- Include a CTA that fits the topic.
-
-For other requested output types, follow the selected output format and provide all relevant sections.
-
-Before answering, silently check that the content is specific, accurate, non-repetitive, platform-appropriate, and ready to use.
+Duration: {duration}
+Topic: {topic}
+Additional context or source script: {script}
 """
 
         try:
@@ -436,9 +446,7 @@ if st.session_state.get("creatorflow_result"):
         st.markdown(result)
 
     with tab_export:
-        st.markdown("#### Take your content with you")
-        st.write("Download your generated text to edit or use later.")
-        st.download_button(
+                st.download_button(
             "📥 Download content (.txt)",
             data=result,
             file_name="creatorflow_content.txt",
@@ -446,6 +454,28 @@ if st.session_state.get("creatorflow_result"):
             use_container_width=True
         )
 
+
+    # ---------- REWRITE TOOL ----------
+
+
+    st.write("")
+    st.markdown("### ✨ Improve your content")
+
+    rewrite_style = st.selectbox(
+        "Choose an improvement",
+        [
+            "Make it more engaging",
+            "Make it shorter",
+            "Simplify the language",
+            "Convert to natural Hinglish",
+            "Add storytelling",
+            "Improve the hook"
+        ],
+        key="rewrite_style"
+    )
+
+    if st.button("✨ Rewrite my content"):
+        st.info("Rewrite Tool is ready for the next step!")
 st.write("")
 st.divider()
 st.markdown(
