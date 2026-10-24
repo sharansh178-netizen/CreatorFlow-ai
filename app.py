@@ -200,9 +200,10 @@ except Exception:
 # ---------- SIDEBAR ----------
 with st.sidebar:
    
+   try:
     st.image("logo.png.png", width=150)
-    st.markdown("## CreatorFlow AI")
-
+except Exception:
+    st.markdown("## ✨ CreatorFlow AI")
     st.markdown(
         '<p style="color:#9eabce;margin-top:-12px;">AI CONTENT STUDIO · V1.0</p>',
         unsafe_allow_html=True
