@@ -344,9 +344,8 @@ if generate:
             "API key not found. Check your .streamlit/secrets.toml file."
         )
 
-    else:
-
-prompt = f"""
+else:
+    prompt = f"""
 You are CreatorFlow AI, an expert content strategist for Hindi, Hinglish, and English creators.
 
 Create useful, original content tailored to the selected platform, language, style, duration, topic, audience, and content type.
