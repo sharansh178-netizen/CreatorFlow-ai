@@ -403,7 +403,7 @@ try:
         else:
             st.error("AI returned an empty response. Please try again.")
 
-        except Exception as e:
+        except Exception as :
             st.error("Content generation failed.")
             st.caption(str(e))
 
