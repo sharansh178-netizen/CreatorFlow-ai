@@ -7,7 +7,7 @@ st.set_page_config(
     page_icon="logo.png.png",
     layout="wide",
     initial_sidebar_state="expanded"
-)
+
 
 # ---------- FUTURISTIC DESIGN ----------
 st.markdown("""
@@ -93,3 +93,393 @@ st.markdown("""
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+
+.glass-card {
+    padding: 20px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(31, 37, 69, .84), rgba(15, 20, 41, .92));
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .16),
+                inset 0 1px 0 rgba(255, 255, 255, .045);
+}
+
+.metric {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -.5px;
+    margin-top: 5px;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: .87rem;
+}
+
+.stTextInput input, .stTextArea textarea {
+    background: rgba(9, 13, 30, .82) !important;
+    border: 1px solid #30385d !important;
+    border-radius: 12px !important;
+}
+
+.stTextInput input:focus, .stTextArea textarea:focus {
+    border-color: #9b7bff !important;
+    box-shadow: 0 0 0 1px #9b7bff !important;
+}
+
+.stSelectbox [data-baseweb="select"] > div {
+    background: #11172c;
+    border-color: #343c62;
+    border-radius: 10px;
+}
+
+.stButton > button, .stDownloadButton > button {
+    border-radius: 11px;
+    font-weight: 700;
+    min-height: 45px;
+    border: 1px solid rgba(161, 135, 255, .5);
+    transition: all .2s ease;
+}
+
+.stButton > button[kind="primary"] {
+    background: linear-gradient(100deg, #7753e8, #426cf5, #329de8);
+    color: white;
+    box-shadow: 0 5px 22px rgba(93, 88, 255, .23);
+}
+
+.stButton > button:hover, .stDownloadButton > button:hover {
+    border-color: #8ad9ff;
+    box-shadow: 0 0 22px rgba(91, 142, 255, .24);
+    transform: translateY(-1px);
+}
+
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px;
+    background: rgba(15, 20, 40, .8);
+    padding: 8px;
+    border: 1px solid #282f51;
+    border-radius: 14px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    border-radius: 9px;
+    padding: 10px 17px;
+    background: transparent;
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(100deg, #50349b, #244e94) !important;
+}
+
+div[data-testid="stExpander"] {
+    background: rgba(18, 23, 45, .7);
+    border: 1px solid #30365a;
+    border-radius: 12px;
+}
+
+hr {
+    border-color: rgba(139, 124, 255, .20);
+}
+
+footer {visibility: hidden;}
+
+@media (max-width: 700px) {
+    .hero {padding: 23px;}
+    .hero h1 {font-size: 2rem;}
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+# ---------- API KEY ----------
+try:
+    api_key = st.secrets["GEMINI_API_KEY"]
+except Exception:
+    api_key = ""
+
+
+# ---------- SIDEBAR ----------
+with st.sidebar:
+   
+    st.image("logo.png", width=150)
+    st.markdown("## CreatorFlow AI")
+
+    st.markdown(
+        '<p style="color:#9eabce;margin-top:-12px;">AI CONTENT STUDIO · V1.0</p>',
+        unsafe_allow_html=True
+    )
+    st.divider()
+
+    st.markdown("### ⚙️ Studio settings")
+
+    mode = st.selectbox(
+        "Content type",
+        [
+            "Full Content Pack",
+            "Reel / Shorts Script",
+            "Hooks & Titles",
+            "Caption & Hashtags",
+            "YouTube SEO Pack"
+        ]
+    )
+
+    platform = st.selectbox(
+        "Platform",
+        ["YouTube", "YouTube Shorts", "Instagram Reels"]
+    )
+
+    language = st.selectbox(
+        "Language",
+        ["Hindi / Hinglish", "English"]
+    )
+
+    tone = st.selectbox(
+        "Content style",
+        [
+            "Catchy and engaging",
+            "Funny and relatable",
+            "Educational and clear",
+            "Storytelling",
+            "Professional"
+        ]
+    )
+
+    duration = st.selectbox(
+        "Video duration",
+        ["30 seconds", "60 seconds", "90 seconds", "3 minutes"]
+    )
+
+    st.divider()
+    st.markdown("**✨ Built for creators**")
+    st.caption("Ideas in. Content out.")
+
+
+# ---------- HERO ----------
+st.markdown("""
+<div class="hero">
+    <div class="eyebrow">✦ YOUR CREATIVE ADVANTAGE</div>
+    <h1>Ideas into content.<br>Creativity into momentum.</h1>
+    <p>
+        Your AI-powered workspace for scripts, hooks, captions and SEO.
+        Built for creators who want to spend less time staring at a blank page.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+
+# ---------- DASHBOARD METRICS ----------
+m1, m2, m3 = st.columns(3)
+
+with m1:
+    st.markdown("""
+    <div class="glass-card">
+        <div class="muted">✦ CONTENT STUDIO</div>
+        <div class="metric">5 tools</div>
+        <div class="muted">From ideas to SEO</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with m2:
+    st.markdown("""
+    <div class="glass-card">
+        <div class="muted">◎ CREATOR LANGUAGES</div>
+        <div class="metric">Hindi + English</div>
+        <div class="muted">Made for your audience</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with m3:
+    st.markdown("""
+    <div class="glass-card">
+        <div class="muted">⚡ YOUR WORKFLOW</div>
+        <div class="metric">Idea → Content</div>
+        <div class="muted">Generate and download</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.write("")
+st.markdown("### ✦ Create your next piece")
+st.markdown(
+    '<p class="muted">Start with a topic. Your AI studio will handle the first draft.</p>',
+    unsafe_allow_html=True
+)
+
+# ---------- INPUT WORKSPACE ----------
+with st.container(border=True):
+    topic = st.text_input(
+        "💡 Video topic",
+        placeholder="e.g. 5 Python mistakes beginners make"
+    )
+
+    audience = st.selectbox(
+        "🎯 Target audience",
+        [
+            "General audience",
+            "Students",
+            "Python beginners",
+            "Content creators",
+            "Gamers",
+            "Working professionals"
+        ]
+    )
+
+    script = st.text_area(
+        "📝 Existing script or extra details (optional)",
+        placeholder="Add your script, target audience, or extra instructions...",
+        height=130
+    )
+
+    generate = st.button(
+        "✨ Generate my content",
+        type="primary",
+        use_container_width=True
+    )
+
+# ---------- GENERATION ----------
+if generate:
+    if not topic.strip() and not script.strip():
+        st.warning("Please enter a topic or paste a script first.")
+
+    elif not api_key:
+        st.error(
+            "API key not found. Check your .streamlit/secrets.toml file."
+        )
+
+    else:
+        prompt = f"""
+You are CreatorFlow AI, an expert content strategist for Hindi, Hinglish, and English creators.
+Create original, useful content tailored to the selected platform, language, style, duration, topic, and content type.
+Start with a compelling, truthful hook. Never use misleading clickbait or exaggerated promises.
+Write natural spoken dialogue that sounds smooth when read aloud.
+For a 30-second video, aim for about 60–75 spoken words; adjust word count for other durations.
+Keep spoken dialogue separate from visual directions, on-screen text, captions, and hashtags.
+Structure scripts with a hook, clearly explained main points, and a relevant call to action when appropriate.
+Explain each included point properly; cover fewer points rather than rushing through too many.
+For technical content, keep claims and code accurate. Never invent APIs, errors, or guarantees.
+For Python, explain mistakes clearly and provide a correct beginner-friendly fix with an example when useful.
+Explain indexing, assignment versus copying, shallow-copy limitations, and list modification accurately when relevant.
+Use realistic timestamps and pacing when timestamps are requested or useful.
+Make titles specific, descriptions relevant, and hashtags focused.
+Follow the selected content type and return only relevant sections.
+Before responding, review accuracy, completeness, natural language, and duration.
+
+FINAL QUALITY CHECK:
+- Make the spoken script fit the selected video duration.
+- For 30 seconds, target approximately 60-75 spoken words.
+- Count only spoken dialogue, not titles, metadata, visual directions, or on-screen text.
+- Ensure the title, description, examples, and spoken script discuss the same points.
+- For programming topics, verify that examples are technically correct.
+- Explain that `==` compares values, while `is` checks object identity.
+- Never claim a script fits the duration unless its spoken word count and estimated speaking pace support that.
+- If the selected content type requests captions, hashtags, or SEO, include them in separate clearly labelled sections.
+
+ALTERNATIVE HOOKS:
+- Generate 3 alternative opening hooks for the selected topic.
+- Make each hook distinct:
+  1. Curiosity-driven
+  2. Problem-focused
+  3. Relatable or surprising
+- Keep each hook short, natural, and suitable for the selected platform and language.
+- Label them Hook 1, Hook 2, and Hook 3.
+- Keep the hooks separate from the main script.
+- Ensure all hooks are accurate and do not use misleading clickbait.
+
+CONTENT SETTINGS:
+target audience: {audience}
+Content type: {mode}
+Platform: {platform}
+Language: {language}
+Style: {tone}
+Duration: {duration}
+Topic: {topic}
+Additional context or source script: {script}
+"""
+
+        try:
+            client = genai.Client(api_key=api_key)
+
+            with st.spinner("✦ Creating your content..."):
+                response = client.models.generate_content(
+                    model="gemini-3.5-flash-lite",
+                    contents=prompt
+                )
+
+            if response.text:
+                st.session_state["creatorflow_result"] = response.text
+                st.session_state["creatorflow_topic"] = (
+                    topic.strip() or "Content from existing script"
+                )
+                st.session_state["creatorflow_mode"] = mode
+                st.success("Your content is ready!")
+            else:
+                st.error("The AI returned no text. Please try again.")
+
+        except Exception as e:
+            st.error("Content generation failed.")
+            st.caption(str(e))
+
+
+# ---------- RESULTS ----------
+if st.session_state.get("creatorflow_result"):
+    result = st.session_state["creatorflow_result"]
+
+    st.write("")
+    st.markdown("### ✨ Your creation")
+    st.markdown(
+        f'<p class="muted">Topic: {st.session_state.get("creatorflow_topic", "")} '
+        f'· {st.session_state.get("creatorflow_mode", "")}</p>',
+        unsafe_allow_html=True
+    )
+
+    tab_output, tab_preview, tab_export = st.tabs(
+        ["📝 Full output", "🔎 Review", "📥 Download"]
+    )
+
+    with tab_output:
+        with st.container(border=True):
+            st.markdown(result)
+
+    with tab_preview:
+        st.markdown("#### Review your content")
+        st.caption(
+            "Check the hooks, titles, script, captions and hashtags before publishing."
+        )
+        st.markdown(result)
+
+    with tab_export:
+                st.download_button(
+            "📥 Download content (.txt)",
+            data=result,
+            file_name="creatorflow_content.txt",
+            mime="text/plain",
+            use_container_width=True
+        )
+
+
+    # ---------- REWRITE TOOL ----------
+
+
+    st.write("")
+    st.markdown("### ✨ Improve your content")
+
+    rewrite_style = st.selectbox(
+        "Choose an improvement",
+        [
+            "Make it more engaging",
+            "Make it shorter",
+            "Simplify the language",
+            "Convert to natural Hinglish",
+            "Add storytelling",
+            "Improve the hook"
+        ],
+        key="rewrite_style"
+    )
+
+    if st.button("✨ Rewrite my content"):
+        st.info("Rewrite Tool is ready for the next step!")
+st.write("")
+st.divider()
+st.markdown(
+    '<p style="text-align:center;color:#8793b5;font-size:.82rem;">'
+    'CREATORFLOW AI · CREATE WITH INTENTION ✦</p>',
+    unsafe_allow_html=True
+)
