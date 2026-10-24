@@ -198,12 +198,17 @@ except Exception:
 
 
 # ---------- SIDEBAR ----------
+import os
+
 with st.sidebar:
-   
-   try:
-    st.image("logo.png.png", width=150)
-except Exception:
-    st.markdown("## ✨ CreatorFlow AI")
+    if os.path.exists("logo.png.png"):
+        st.image("logo.png.png", width=150)
+    elif os.path.exists("logo.png"):
+        st.image("logo.png", width=150)
+    else:
+        st.markdown("## ✨ CreatorFlow AI")
+
+    st.markdown("## CreatorFlow AI")
     st.markdown(
         '<p style="color:#9eabce;margin-top:-12px;">AI CONTENT STUDIO · V1.0</p>',
         unsafe_allow_html=True
