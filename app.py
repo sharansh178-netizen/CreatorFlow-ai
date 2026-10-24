@@ -403,10 +403,9 @@ try:
         else:
             st.error("AI returned an empty response. Please try again.")
 
-        except Exception as :
+        except Exception as e:
             st.error("Content generation failed.")
             st.caption(str(e))
-
 
 # ---------- RESULTS ----------
 if st.session_state.get("creatorflow_result"):
