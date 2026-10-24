@@ -393,8 +393,7 @@ try:
             model="gemini-3.5-flash-lite",
             contents=prompt
         )
-
-            if response.text:
+if response.text:
                 st.session_state["creatorflow_result"] = response.text
                 st.session_state["creatorflow_topic"] = (
                     topic.strip() or "Content from existing script"
