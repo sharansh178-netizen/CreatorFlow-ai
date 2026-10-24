@@ -388,11 +388,11 @@ Additional context or source script: {script}
 try:
     client = genai.Client(api_key=api_key)
 
-    with st.spinner("✦ Creating your content..."):
-                response = client.models.generate_content(
-                    model="gemini-3.5-flash-lite",
-                    contents=prompt
-                )
+    with st.spinner("✨ Creating your content..."):
+        response = client.models.generate_content(
+            model="gemini-3.5-flash-lite",
+            contents=prompt
+        )
 
             if response.text:
                 st.session_state["creatorflow_result"] = response.text
