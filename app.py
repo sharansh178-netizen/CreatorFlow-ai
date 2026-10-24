@@ -7,7 +7,7 @@ st.set_page_config(
     page_icon="logo.png.png",
     layout="wide",
     initial_sidebar_state="expanded"
-
+)
 
 # ---------- FUTURISTIC DESIGN ----------
 st.markdown("""
