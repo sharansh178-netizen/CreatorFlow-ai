@@ -200,7 +200,7 @@ except Exception:
 # ---------- SIDEBAR ----------
 with st.sidebar:
    
-    st.image("logo.png", width=150)
+    st.image("logo.png.png", width=150)
     st.markdown("## CreatorFlow AI")
 
     st.markdown(
